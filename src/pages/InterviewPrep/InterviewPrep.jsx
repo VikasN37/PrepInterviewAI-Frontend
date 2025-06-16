@@ -11,7 +11,6 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import QuestionCard from "../../components/Cards/QuestionCard";
 import Drawer from "../../components/Drawer";
-import SkeletonLoader from "../../components/Loader/SkeletonLoader";
 import AIResponsePreview from "./components/AIResponsePreview";
 
 const InterviewPrep = () => {
@@ -225,7 +224,7 @@ const InterviewPrep = () => {
                 <LuCircleAlert className="mt-1" /> {errorMsg}
               </p>
             )}
-            {isLoading && <SkeletonLoader />}
+            {isLoading && <SpinnerLoader />}
             {!isLoading && explanation && (
               <AIResponsePreview content={explanation?.explanation} />
             )}
