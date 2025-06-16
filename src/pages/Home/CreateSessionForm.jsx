@@ -39,7 +39,7 @@ const CreateSessionForm = () => {
     setIsLoading(true);
 
     try {
-      // Call AI API to generate questions
+      // API to generate questions
       const aiResponse = await axiosInstance.post(
         API_PATHS.AI.GENERATE_QUESTIONS,
         {
@@ -50,7 +50,6 @@ const CreateSessionForm = () => {
         }
       );
 
-      // Should be array like [{question, answer}, ...]
       const generatedQuestions = aiResponse.data;
 
       const response = await axiosInstance.post(API_PATHS.SESSION.CREATE, {
@@ -71,13 +70,13 @@ const CreateSessionForm = () => {
       setIsLoading(false);
     }
   };
-  return <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center">
+  return (
+    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center">
       <h3 className="text-lg font-semibold text-black">
         Start a New Interview Journey
       </h3>
       <p className="text-xs text-slate-700 mt-[5px] mb-3">
-        Fill out a few quick details and unlock your personalized set of
-        interview questions!
+        Fill out details and get personalized set of interview questions!
       </p>
 
       <form onSubmit={handleCreateSession} className="flex flex-col gap-3">
@@ -87,6 +86,7 @@ const CreateSessionForm = () => {
           label="Target Role"
           placeholder="(e.g., Frontend Developer, UI/UX Designer, etc.)"
           type="text"
+          required={true}
         />
 
         <Input
@@ -95,6 +95,7 @@ const CreateSessionForm = () => {
           label="Years of Experience"
           placeholder="(e.g., 1 year, 3 years, 5+ years)"
           type="number"
+          required={true}
         />
 
         <Input
@@ -103,6 +104,7 @@ const CreateSessionForm = () => {
           label="Topics to Focus On"
           placeholder="(Comma-separated, e.g., React, Node.js, MongoDB)"
           type="text"
+          required={true}
         />
 
         <Input
@@ -120,10 +122,11 @@ const CreateSessionForm = () => {
           className="btn-primary w-full mt-2"
           disabled={isLoading}
         >
-        {isLoading && <SpinnerLoader />} Create Session
+          {isLoading && <SpinnerLoader />} Create Session
         </button>
       </form>
     </div>
+  );
 };
 
 export default CreateSessionForm;

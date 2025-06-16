@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { AnimatePresence, motion } from "framer-motion";
+// import { AnimatePresence, motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 import { toast } from "react-hot-toast";
@@ -136,6 +136,7 @@ const InterviewPrep = () => {
 
     return () => {};
   }, []);
+
   return (
     <DashboardLayout>
       <RoleInfoHeader
@@ -161,57 +162,55 @@ const InterviewPrep = () => {
               openLeanMoreDrawer ? "md:col-span-7" : "md:col-span-8"
             } `}
           >
-            <AnimatePresence>
-              {sessionData?.questions?.map((data, index) => {
-                return (
-                  <motion.div
-                    key={data._id || index}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{
-                      duration: 0.4,
-                      type: "spring",
-                      stiffness: 100,
-                      delay: index * 0.1,
-                      damping: 15,
-                    }}
-                    layout // This is the key prop that animates position changes
-                    layoutId={`question-${data._id || index}`} // Helps framer track specific items
-                  >
-                    <>
-                      <QuestionCard
-                        question={data?.question}
-                        answer={data?.answer}
-                        onLearnMore={() =>
-                          generateConceptExplanation(data.question)
-                        }
-                        isPinned={data?.isPinned}
-                        onTogglePin={() => toggleQuestionPinStatus(data._id)}
-                      />
+            {sessionData?.questions?.map((data, index) => {
+              return (
+                <div
+                  key={data._id || index}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 100,
+                    delay: index * 0.1,
+                    damping: 15,
+                  }}
+                  layout // This is the key prop that animates position changes
+                  layoutId={`question-${data._id || index}`} // Helps framer track specific items
+                >
+                  <>
+                    <QuestionCard
+                      question={data?.question}
+                      answer={data?.answer}
+                      onLearnMore={() =>
+                        generateConceptExplanation(data.question)
+                      }
+                      isPinned={data?.isPinned}
+                      onTogglePin={() => toggleQuestionPinStatus(data._id)}
+                    />
 
-                      {!isLoading &&
-                        sessionData?.questions?.length == index + 1 && (
-                          <div className="flex items-center justify-center mt-5">
-                            <button
-                              className="flex items-center gap-3 text-sm text-white font-medium bg-black px-5 py-2 mr-2 rounded text-nowrap cursor-pointer"
-                              disabled={isLoading || isUpdateLoader}
-                              onClick={uploadMoreQuestions}
-                            >
-                              {isUpdateLoader ? (
-                                <SpinnerLoader />
-                              ) : (
-                                <LuListCollapse className="text-lg" />
-                              )}{" "}
-                              Load More
-                            </button>
-                          </div>
-                        )}
-                    </>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                    {!isLoading &&
+                      sessionData?.questions?.length == index + 1 && (
+                        <div className="flex items-center justify-center mt-5">
+                          <button
+                            className="flex items-center gap-3 text-sm text-white font-medium bg-black px-5 py-2 mr-2 rounded text-nowrap cursor-pointer"
+                            disabled={isLoading || isUpdateLoader}
+                            onClick={uploadMoreQuestions}
+                          >
+                            {isUpdateLoader ? (
+                              <SpinnerLoader />
+                            ) : (
+                              <LuListCollapse className="text-lg" />
+                            )}{" "}
+                            Load More
+                          </button>
+                        </div>
+                      )}
+                  </>
+                </div>
+              );
+            })}
           </div>
         </div>
 
