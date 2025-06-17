@@ -27,7 +27,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="w-full min-h-full bg-[#FFFCEF]">
-        <div className="w-[500px] h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
+        <div className="w-[500px] h-[500px] absolute top-0 left-0" />
 
         <div className="container mx-auto px-4 pt-6 pb-[200px] relative z-10">
           {/* Header */}
@@ -37,7 +37,7 @@ const LandingPage = () => {
               <ProfileInfoCard />
             ) : (
               <button
-                className="bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
+                className="bg-orange-400 text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
                 onClick={() => setOpenAuthModal(true)}
               >
                 Login / Sign Up
@@ -56,7 +56,7 @@ const LandingPage = () => {
 
               <h1 className="text-5xl text-black font-medium mb-6 leading-tight">
                 Ace Interviews with <br />
-                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#FF9324_0%,_#FCD760_100%)] bg-[length:200%_200%] animate-text-shine font-semibold">
+                <span className="text-orange-400 font-bold">
                   AI-Powered
                 </span>{" "}
                 Learning
@@ -72,7 +72,7 @@ const LandingPage = () => {
               </p>
 
               <button
-                className="bg-black text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-yellow-100 hover:text-black border border-yellow-50 hover:border-yellow-300 transition-colors cursor-pointer"
+                className="bg-black text-sm font-semibold text-white px-7 py-2.5 rounded-full  border-yellow-50 cursor-pointer"
                 onClick={handleClick}
               >
                 Get Started
@@ -136,7 +136,8 @@ const LandingPage = () => {
         </div>
 
         <div className="text-sm bg-gray-50 text-secondary text-center p-5 mt-5">
-          Made with..
+          A platform to streamline your interview preparation with AI-driven
+          insights.
         </div>
       </div>
 
