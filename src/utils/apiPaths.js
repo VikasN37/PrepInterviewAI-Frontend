@@ -1,5 +1,5 @@
 export const BASE_URL = "http://localhost:8000";
-export const PRODUCTION_URL = "http://localhost:8000";
+export const PRODUCTION_URL = "https://prepinterviewai-backend.onrender.com";
 
 export const API_PATHS = {
   AUTH: {
