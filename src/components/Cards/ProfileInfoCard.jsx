@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import Avatar from "../../assets/AvatarIcon.jpg";
 
 const ProfileInfoCard = () => {
   const { user, clearUser } = useContext(UserContext);
@@ -16,7 +17,7 @@ const ProfileInfoCard = () => {
     user && (
       <div className="flex items-center">
         <img
-          src={user.profileImageUrl}
+          src={Avatar}
           alt=""
           className="w-11 h-11 bg-gray-300 rounded-full mr-3"
         />

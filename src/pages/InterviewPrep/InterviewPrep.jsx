@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-// import { AnimatePresence, motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 import { toast } from "react-hot-toast";
@@ -119,9 +118,9 @@ const InterviewPrep = () => {
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
+        setErrorMsg(error.response.data.message);
       } else {
-        setError("Something went wrong. Please try again.");
+        setErrorMsg("Something went wrong. Please try again.");
       }
     } finally {
       setIsUpdateLoader(false);
